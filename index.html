@@ -1,129 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Isaac Guesthouse - Lilongwe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .slide { display: none; }
-    .slide.active { display: block; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Isaac Guesthouse - Your comfortable home away from home with premium amenities">
+    <meta name="keywords" content="guesthouse, accommodation, hotel, stay, vacation">
+    <title>Isaac Guesthouse - Premium Accommodation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0044cc;
+            --primary-dark: #003399;
+            --text-light: #ffffff;
+            --background-light: #f4f4f4;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: var(--background-light);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .content-section {
+            padding: 2rem 0;
+        }
+
+        .content-section h2, 
+        .content-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .content-section p {
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        /* Improved Gallery Styles */
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 400px;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-controls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .gallery-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .gallery-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        .gallery-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .indicator.active {
+            background-color: var(--text-light);
+            transform: scale(1.2);
+        }
+
+        .map-container {
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+
+        .contact-section {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .contact-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-slides {
+                height: 300px;
+            }
+        }
+        .pricing-section {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.pricing-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.price-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.price-card:hover {
+    transform: translateY(-5px);
+}
+
+.price-card.featured {
+    border: 2px solid var(--primary-color);
+    position: relative;
+}
+
+.price-card.featured::after {
+    content: "Popular";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.price-card h4 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.price {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 1rem 0;
+}
+
+.amenities {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.amenities li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.amenities li::before {
+    content: "✓";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+.book-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.book-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+    .pricing-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+    </style>
 </head>
-<body class="font-['Roboto'] bg-gray-100 text-gray-800">
+<body>
 
-  <!-- Navigation -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-indigo-600">Isaac Guesthouse</h1>
-      <nav class="space-x-6 text-sm font-medium">
-        <a href="#about" class="hover:text-indigo-600">About</a>
-        <a href="#gallery" class="hover:text-indigo-600">Gallery</a>
-        <a href="#prices" class="hover:text-indigo-600">Prices</a>
-        <a href="#contact" class="hover:text-indigo-600">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="bg-indigo-600 text-white text-center py-24">
-    <h2 class="text-4xl font-bold mb-4">Welcome to Isaac Guesthouse</h2>
-    <p class="text-lg mb-6">Your perfect place to rest and relax in Lilongwe</p>
-    <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100">Book Now</a>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="py-16 px-4 max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-6">About Us</h2>
-    <p class="text-gray-700 text-lg leading-relaxed">
-      Isaac Guesthouse is located in Lilongwe, Area 44, near Kamuzu Barracks and Nsambeta School.
-      We offer you a serene and affordable place to stay with top-notch services. Whether you're traveling
-      for business or leisure, Isaac Guesthouse is your home away from home.
-    </p>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery" class="bg-white py-16 px-4">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8">Gallery</h2>
-      <div class="relative overflow-hidden w-full h-96 rounded-lg shadow-lg">
-        <div id="slider" class="flex transition-transform duration-700 ease-in-out w-full h-full">
-          <img src="1.jpg" class="w-full object-cover flex-shrink-0" alt="Guesthouse Image 1">
-          <img src="2.jpg" class="w-full object-cover flex-shrink-0" alt="Guesthouse Image 2">
-          <img src="3.jpg" class="w-full object-cover flex-shrink-0" alt="Guesthouse Image 3">
-          <img src="4.jpg" class="w-full object-cover flex-shrink-0" alt="Guesthouse Image 4">
-          <img src="5.jpg" class="w-full object-cover flex-shrink-0" alt="Guesthouse Image 5">
+    <header>
+        <div class="container">
+            <h1>Isaac Guesthouse</h1>
+            <p>Your home away from home</p>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Prices -->
-  <section id="prices" class="py-16 bg-gray-50 px-4">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-10">Our Prices</h2>
-      <div class="grid md:grid-cols-2 gap-8 text-left">
-        <div class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-xl font-semibold mb-4 text-indigo-600">Whole Night</h3>
-          <ul class="space-y-2">
-            <li>Self-contained Rooms: <span class="line-through">MK8000</span> → MK6000</li>
-            <li>Medium Rooms: <span class="line-through">MK6000</span> → MK4000</li>
-            <li>Small Rooms: <span class="line-through">MK3000</span> → MK2000</li>
-          </ul>
+    <main class="container">
+        <section class="content-section">
+            <h2>Welcome to Isaac Guesthouse</h2>
+            <p>Located in a peaceful area in area 44 Lilongwe, Isaac Guesthouse provides comfort and relaxation with all the amenities you need for a memorable stay. Our commitment to excellence ensures you'll enjoy premium hospitality in every detail.</p>
+        </section>
+
+        <section class="content-section">
+            <!-- Improved Gallery Section -->
+            <div class="gallery-container">
+                <div class="gallery-slides">
+                    <div class="gallery-slide">
+                        <img src="image0.jpg" alt="Deluxe Room with comfortable bedding">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="image2.jfif" alt="Modern bathroom with premium fixtures">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="image001.jpg" alt="Guesthouse lounge area">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="image01.jpg" alt="Beautiful garden view">
+                    </div>
+
+                    <div class="gallery-slide">
+                        <img src="image1.jpg" alt="Beautiful garden view">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="image5.jpg" alt="Beautiful garden view">
+                    </div>
+                </div>
+                
+                <div class="gallery-controls">
+                    <button class="gallery-btn" id="prevBtn" aria-label="Previous image">&#10094;</button>
+                    <button class="gallery-btn" id="nextBtn" aria-label="Next image">&#10095;</button>
+                </div>
+                
+                <div class="gallery-indicators" id="indicators">
+                    <!-- Indicators will be added by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h3>Explore Our Guesthouse</h3>
+            <p>We offer spacious rooms with modern amenities, beautifully landscaped gardens, and premium services to make your stay truly special. Each room is designed with your comfort in mind, featuring high-quality furnishings and thoughtful touches.</p>
+        </section>
+        <section class="content-section pricing-section">
+            <h3>Our Room Rates</h3>
+            <p>We offer comfortable accommodations at competitive prices. All rates are per night and include complimentary breakfast.</p>
+            
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <h4>Standard Room</h4>
+                    <div class="price">MK5,000</div>
+                    <ul class="amenities">
+                        <li>Queen-size bed</li>
+                        <li>Private bathroom</li>
+                        <li>Free Wi-Fi</li>
+                        <li>Air conditioning</li>
+                    </ul>
+                    <button class="book-btn">Book Now</button>
+                </div>
+                
+                <div class="price-card featured">
+                    <h4>Deluxe Room</h4>
+                    <div class="price">MK6,000</div>
+                    <ul class="amenities">
+                        <li>King-size bed</li>
+                        <li>Private bathroom with shower</li>
+                        <li>Free Wi-Fi</li>
+                        <li>Air conditioning</li>
+                        <li>Mini refrigerator</li>
+                    </ul>
+                    <button class="book-btn">Book Now</button>
+                </div>
+                
+                <div class="price-card">
+                    <h4>Premium Suite</h4>
+                    <div class="price">MK10,000</div>
+                    <ul class="amenities">
+                        <li>King-size bed + sitting area</li>
+                        <li>Luxury bathroom with bathtub</li>
+                        <li>Free Wi-Fi</li>
+                        <li>Air conditioning</li>
+                        <li>Mini refrigerator</li>
+                        <li>Flat-screen TV</li>
+                    </ul>
+                    <button class="book-btn">Book Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <!-- Map Section -->
+            <div class="map-container">
+                <h3>Find Us</h3>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1935.687404774219!2d33.827534658820305!3d-13.995776221765038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19202df29878770b%3A0x3fd8ddd46ee224d6!2sisaac%20guest%20house!5e0!3m2!1sen!2smw!4v1746435480990!5m2!1sen!2smw"
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    title="Location of Isaac Guesthouse on Google Maps">
+                </iframe>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h3>Contact Us</h3>
+            <p>Email: <a href="mailto:isaacibrah4@gmail.com">info@isaacguesthouse.com</a></p>
+            <p>Phone: <a href="tel:+265994721113">+265-99472-1113</a></p>
+            <p>Address: Area 44 near Kamuzu Barracks, Lilongwe</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Isaac Guesthouse. All rights reserved.</p>
+            <p>Developed by: Ibrahim isaac: +265990088193, +265880252814, isaacibrah4@gmail.com</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-xl font-semibold mb-4 text-indigo-600">Short Time</h3>
-          <ul class="space-y-2">
-            <li>Self-contained Rooms: <span class="line-through">MK4000</span> → MK3000</li>
-            <li>Medium Rooms: <span class="line-through">MK5000</span> → MK4000</li>
-            <li>Small Rooms: <span class="line-through">MK3000</span> → MK2500</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- Contact -->
-  <section id="contact" class="py-16 px-4 text-center">
-    <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
-    <p class="text-lg mb-6">For bookings or inquiries, reach out to us:</p>
-    <div class="space-x-4">
-      <a href="tel:+265994721113" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700">
-        <i class="fas fa-phone mr-2"></i> Call Us
-      </a>
-      <a href="mailto:isaacibrah4@gmail.com" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700">
-        <i class="fas fa-envelope mr-2"></i> Email Us
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-white border-t py-6 text-center text-sm text-gray-600">
-    <p>&copy; 2024 Isaac Guesthouse in Lilongwe. All rights reserved.</p>
-    <p>Developer & Designer: Ibrahim Isaac | Call: 0990088193</p>
-  </footer>
-
-  <!-- Slideshow Script -->
-  <script>
-    const slider = document.getElementById("slider");
-    const slideCount = slider.children.length;
-    let index = 0;
-  
-    function showSlide(i) {
-      const offset = i * -100;
-      slider.style.transform = `translateX(${offset}%)`;
-    }
-  
-    function nextSlide() {
-      index = (index + 1) % slideCount;
-      showSlide(index);
-    }
-  
-    setInterval(nextSlide, 3000);
-  </script>
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gallery functionality
+            const slides = document.querySelector('.gallery-slides');
+            const slideItems = document.querySelectorAll('.gallery-slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicatorsContainer = document.getElementById('indicators');
+            
+            let currentIndex = 0;
+            const totalSlides = slideItems.length;
+            let slideInterval;
+            
+            // Create indicators
+            slideItems.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            const indicators = document.querySelectorAll('.indicator');
+            
+            // Update slide position
+            function updateSlide() {
+                slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update active indicator
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                currentIndex = index;
+                updateSlide();
+                resetInterval();
+            }
+            
+            // Next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlide();
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlide();
+            }
+            
+            // Reset autoplay interval
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetInterval();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetInterval();
+            });
+            
+            // Start autoplay
+            resetInterval();
+            
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>
